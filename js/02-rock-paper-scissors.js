@@ -1,3 +1,5 @@
+const choiceArray = ["rock" , "paper", "scissors"];
+
 const fGetUserChoice = function (){
 
     let strChoice, iChoice;
@@ -63,6 +65,25 @@ const fCompareChoices = function(firstPlayerChoice, secondPlayerChoice) {
     }
 };
 
+const fWinnerDeclaration = function(winner, userChoice, comChoice){
+
+    window.alert("You chose: " + choiceArray[userChoice] + ". The computer chose: " + choiceArray[comChoice] + ".");
+    if (winner === 1){
+
+        window.alert("You have won!");
+        return -1;
+    }
+    else if (winner === 2){
+        window.alert("You lost. Computron has won!");
+        return -1;
+    }
+    else {
+        window.alert("It's a tie. Ewww. Choose again.")
+        return 0;
+    }
+
+}
+
 let flag = 0;
 let userChoice;
 let comChoice;
@@ -73,13 +94,8 @@ do {
     userChoice = fGetUserChoice();
     comChoice = fGetComChoice();
     winner = fCompareChoices(userChoice, comChoice);
+    flag = fWinnerDeclaration(winner, userChoice, comChoice);
 
-    
-    
-    console.log("User choice: " + userChoice);
-    console.log("Com choice: " + comChoice);
-
-    flag = -1;
 } while (flag != -1);
 
 
