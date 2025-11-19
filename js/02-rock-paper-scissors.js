@@ -1,6 +1,6 @@
 const choiceArray = ["rock" , "paper", "scissors"];
 
-const fGetUserChoice = function (){
+const fGetUserChoice = () => {
 
     let strChoice, iChoice;
     let flag = 0;
@@ -25,16 +25,16 @@ const fGetUserChoice = function (){
     } while (flag === 0);
 
     return iChoice;
-};
+}
 
-const fGetComChoice = function(){
+const fGetComChoice = () => {
 
     let comChoice = Math.floor(Math.random() * 3);
     return comChoice;
 
-};
+}
 
-const fCompareChoices = function(firstPlayerChoice, secondPlayerChoice) {
+const fCompareChoices = (firstPlayerChoice, secondPlayerChoice) => {
 
     if (firstPlayerChoice == secondPlayerChoice){
         return 0;
@@ -63,9 +63,9 @@ const fCompareChoices = function(firstPlayerChoice, secondPlayerChoice) {
             return 1;
         }
     }
-};
+}
 
-const fWinnerDeclaration = function(winner, userChoice, comChoice){
+const fWinnerDeclaration = (winner, userChoice, comChoice) => {
 
     window.alert("You chose: " + choiceArray[userChoice] + ". The computer chose: " + choiceArray[comChoice] + ".");
     if (winner === 1){
@@ -84,6 +84,24 @@ const fWinnerDeclaration = function(winner, userChoice, comChoice){
 
 }
 
+const fContinue = () => {
+
+    let choice;
+    let end = 0;
+
+    do {
+        choice = window.prompt("Would you like to play again? (1 for yes, 2 for no)");
+
+        if (choice != "2" && choice != "1"){
+            window.alert("Please correctly choose either 1 or 2.");
+        }
+        else {
+            end = -1;
+            return choice;
+        }
+    } while (end === 0);
+}
+
 let flag = 0;
 let userChoice;
 let comChoice;
@@ -94,9 +112,10 @@ do {
     userChoice = fGetUserChoice();
     comChoice = fGetComChoice();
     winner = fCompareChoices(userChoice, comChoice);
-    flag = fWinnerDeclaration(winner, userChoice, comChoice);
+    fWinnerDeclaration(winner, userChoice, comChoice);
+    flag = fContinue();
 
-} while (flag != -1);
+} while (flag != 2);
 
 
 
